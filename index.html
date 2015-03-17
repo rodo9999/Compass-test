@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>PhoneGap Compass Test</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="buttons.css" />
+    <style>
+    body {margin:0px;font-size:large;}
+	.hidden {visibility:collapse;display:none;}
+	.expose {visibility:visible;display:block;} // Here for completeness only.
+	.copyright {padding:5px;align:left;font-style:italic;font-size:small;}
+    </style>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript">
+	var gWatchID = null;
+	var gOptions = { frequency: 2000 }; // Update every 2 seconds
+	var gOption2 = { filter: 30 };      // degrees required to initiate a watchHeading success callback
+	//
+    // Wait for PhoneGap to load
+	document.addEventListener("deviceready", onDeviceReady, false);
+	//
+	function compassClear() {
+		document.getElementById('heading').innerHTML = '';
+	}
+	function compassUpdate(heading) {
+		document.getElementById('heading').innerHTML = heading.magneticHeading;
+	}
+	function compassOff() {
+		navigator.compass.clearWatch(gWatchID);
+	}
+
+	//
+	function onDeviceReady() {
+		navigator.compass.getCurrentHeading(compassUpdate, function (compassError) { alert('Compass error: ' + compassError.code); });
+
+		gWatchID = navigator.compass.watchHeading(compassUpdate,
+				function (compassError) { alert('Compass error: ' + compassError.code); },
+				gOptions);
+	}
+	//
+	function onLoad() {
+		accelClear();
+	}
+
+    </script>
+</head>
+<body onload="onLoad()">
+<div class="button button-block button-large"><img align=left src=favicon-48x48.png>Compass</div>
+<p />&nbsp;<p />
+<span onclick='compassOff()'><button class="button button-pill button-primary button-large" style="margin:0.1em">Clear Watch</button></span>
+
+<span onclick='navigator.app.exitApp()'><button class="button button-pill button-primary button-large" style="margin:0.1em;float:right;">Exit</button></span>
+
+<div id=hd class="button button-block button-pill button-primary button-large" style="margin:1em;">Heading: <span id=heading></span></div>
+
+<div class="copyright" style="padding:5px;align:left;font-style:italic;font-size:small;">
+    <span id=copyright>Created by Jesus Monroy, Jr. &copy; 2015</span>
+</div>
+</body>
+</html>
+
+
+
+
+
+
