@@ -31,8 +31,12 @@
 
 	//
 	function onDeviceReady() {
+		// hide Exit button. They don't have one on iOS devices.
+		if (device.platform === "iOS") {
+			//alert("got iOS");
+			$("#exitApp").addClass("hidden");
+		}
 		navigator.compass.getCurrentHeading(compassUpdate, function (compassError) { alert('Compass error: ' + compassError.code); });
-
 		gWatchID = navigator.compass.watchHeading(compassUpdate,
 				function (compassError) { alert('Compass error: ' + compassError.code); },
 				gOptions);
@@ -49,7 +53,7 @@
 <p />&nbsp;<p />
 <span onclick='compassOff()'><button class="button button-pill button-primary button-large" style="margin:0.1em">Clear Watch</button></span>
 
-<span onclick='navigator.app.exitApp()'><button class="button button-pill button-primary button-large" style="margin:0.1em;float:right;">Exit</button></span>
+<span onclick='navigator.app.exitApp()'><button id=exitApp class="button button-pill button-primary button-large" style="margin:0.1em;float:right;">Exit</button></span>
 
 <div id=hd class="button button-block button-pill button-primary button-large" style="margin:1em;">Heading: <span id=heading></span></div>
 
