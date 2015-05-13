@@ -34,7 +34,8 @@
 		// hide Exit button. They don't have one on iOS devices.
 		if (device.platform === "iOS") {
 			//alert("got iOS");
-			$("#exitApp").addClass("hidden");
+			// http://www.mzcart.com/javascript-how-to-addremove-css-class-from-a-dom-element/
+			document.getElementById('exitApp').classList.add("hidden");
 		}
 		navigator.compass.getCurrentHeading(compassUpdate, function (compassError) { alert('Compass error: ' + compassError.code); });
 		gWatchID = navigator.compass.watchHeading(compassUpdate,
