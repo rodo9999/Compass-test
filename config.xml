@@ -9,14 +9,17 @@
 
         <name>Phonegap GeoOrientation (Compass) test</name>
         <description>Simple GeoOrientation (Compass) test. aka device-orientation</description>
-        <author href="http://bsdmasterindex.com" email="jessemonroy650@yahoo.com">
-        Jesse Monroy
-        </author>
+        <author href="http://bsdmasterindex.com" email="jessemonroy650@yahoo.com">Jesse Monroy</author>
+        
+        <preference name="android-minSdkVersion" value="10" />
+        
         <gap:platform name="android" />
-        <gap:platform name="ios" />
+        <!-- gap:platform name="ios" / -->
 
         <preference name="permissions" value="none"/>
         <!-- device required so we can detect if we are using iOS -->
-        <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
-        <gap:plugin name="org.apache.cordova.device-orientation" version="0.3.9" />
+        <!-- gap:plugin name="org.apache.cordova.device" version="0.2.12" / -->
+        <!-- gap:plugin name="org.apache.cordova.device-orientation" version="0.3.9" / -->
+        <plugin name="cordova-plugin-device" spec="~1.1.6" />
+        <plugin name="cordova-plugin-device-orientation" spec="~1.0.7" />
     </widget>
