@@ -26,7 +26,7 @@
         document.getElementById('heading').innerHTML = '';
     }
     function compassUpdate(heading) {
-        document.getElementById('heading').innerHTML = Math.round(heading.magneticHeading * 10) / 10 ;   // Cambié esto
+        document.getElementById('heading').innerHTML = Math.round(heading.magneticHeading)  ;   // Cambié esto. Elimino los decimales.
     }
     function compassOff() {
         navigator.compass.clearWatch(gWatchID);
